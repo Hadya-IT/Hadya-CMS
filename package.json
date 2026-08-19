@@ -1,0 +1,38 @@
+{
+  "name": "hadya-cms",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "doctor": "node scripts/doctor.mjs",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:test": "node scripts/test-db.mjs",
+    "db:seed": "node scripts/seed-oracle.mjs",
+    "db:export": "node scripts/export-oracle.mjs",
+    "db:migrate": "node scripts/migrate.mjs"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "next": "15.5.22",
+    "next-auth": "4.24.11",
+    "oci-common": "^2.137.1",
+    "oci-objectstorage": "^2.137.1",
+    "oracledb": "^6.9.0",
+    "postcss": "^8.5.23",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "server-only": "0.0.1",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.5",
+    "@types/oracledb": "^6.5.2",
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3",
+    "typescript": "5.7.3"
+  }
+}

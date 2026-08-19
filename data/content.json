@@ -1,0 +1,1897 @@
+{
+  "settings": {
+    "brandName": "HADYA",
+    "brandTagline": "Real Estate Development & Facility Management · Kingdom of Saudi Arabia",
+    "logoLight": "/uploads/emb_gold.png",
+    "logoDark": "/uploads/emb_navy.png",
+    "favicon": "/uploads/emb_navy.png",
+    "tokens": {
+      "cream": "#f4f0e8",
+      "creamAlt": "#efe9dc",
+      "ink": "#13203f",
+      "inkSoft": "rgba(19,32,63,.66)",
+      "gold": "#7f6421",
+      "goldSoft": "#c1a06a",
+      "navy": "#0d1a4a",
+      "line": "rgba(19,32,63,.15)",
+      "serifFamily": "'Cormorant Garamond', ui-serif, Georgia, serif",
+      "sansFamily": "'Inter', system-ui, sans-serif",
+      "arabicSerifFamily": "'Amiri', serif",
+      "arabicSansFamily": "'IBM Plex Sans Arabic', system-ui, sans-serif",
+      "baseFontSize": 16,
+      "contentWidth": 1280,
+      "radius": 4
+    },
+    "header": {
+      "sticky": true,
+      "transparentOnHero": true,
+      "showLangSwitch": false,
+      "ctaLabel": "",
+      "ctaHref": "/contact-us"
+    },
+    "footer": {
+      "copy": "© 2026 Hadya · Real Estate Development &amp; Hospitality",
+      "showBrand": true,
+      "links": [
+        {
+          "id": "fl_1",
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com/company/hadia-abdul-latif-jameel-co./",
+          "external": true
+        },
+        {
+          "id": "fl_2",
+          "label": "Privacy",
+          "href": "#",
+          "external": false
+        }
+      ]
+    },
+    "splash": {
+      "enabled": true,
+      "word": "HADYA",
+      "sub": "Kingdom of Saudi Arabia",
+      "durationMs": 2400
+    },
+    "navExtra": []
+  },
+  "pages": [
+    {
+      "id": "pg_home",
+      "title": "Home",
+      "slug": "",
+      "navLabel": "Home",
+      "showInNav": false,
+      "navOrder": 0,
+      "status": "draft",
+      "seo": {
+        "title": "Hadya — Real Estate Development & Facility Management · Kingdom of Saudi Arabia",
+        "description": "A leading real estate developer and facility manager shaping residential, hospitality and commercial landmarks across Saudi Arabia.",
+        "ogImage": "/uploads/hero.jpg",
+        "noIndex": false
+      },
+      "style": {
+        "theme": "light",
+        "bgType": "none",
+        "bgOverlay": 0,
+        "bodyScale": 1,
+        "headingScale": 1,
+        "paddingTop": 84,
+        "paddingBottom": 84,
+        "align": "left",
+        "animation": "fade-up",
+        "animationDuration": 900,
+        "animationDelay": 0
+      },
+      "updatedAt": "2026-08-11T13:14:03.464Z",
+      "blocks": [
+        {
+          "id": "blk_001",
+          "type": "hero",
+          "label": "Opening hero",
+          "style": {
+            "theme": "dark",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 1200,
+            "animationDelay": 200
+          },
+          "data": {
+            "eyebrow": "Jeddah, Kingdom of Saudi Arabia",
+            "title": "Crafting <em>enduring</em><br>landmarks in the Kingdom",
+            "subtitle": "A leading real estate developer and facility manager shaping residential, hospitality and commercial landmarks across Saudi Arabia.",
+            "image": "/uploads/hero.jpg",
+            "height": 100,
+            "kenBurns": true,
+            "captionTitle": "Arabian heritage, reimagined.",
+            "captionSub": "Jeddah, Kingdom of Saudi Arabia",
+            "scrollLabel": "Scroll",
+            "ctaLabel": "",
+            "ctaHref": ""
+          }
+        },
+        {
+          "id": "blk_002",
+          "type": "splitFeature",
+          "label": "Legacy statement",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 100,
+            "paddingBottom": 100,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Our Legacy",
+            "statement": "We build with the reverence of a hotelier and the precision of a master developer <em>honoring Saudi heritage</em> through a modern architectural language.",
+            "body": "Hadya is a leading real estate development company with active strategic developments across the Kingdom of Saudi Arabia. Our core competencies span the full cycle of residential, hospitality and commercial property development, as well as facility management. Throughout our record, passion, persistence and attention to detail have distinguished our projects — and as we grow, we keep our promise to enrich the society we serve.",
+            "image": "/uploads/jameel.jpg",
+            "imageCaption": "Jameel Square",
+            "imageSub": "Commercial · Jeddah · Est. 2009",
+            "mediaSide": "right",
+            "tilt": true,
+            "showFlowLine": true,
+            "stats": [
+              {
+                "value": "2009",
+                "label": "Founding flagship"
+              },
+              {
+                "value": "7",
+                "label": "Flagship developments"
+              },
+              {
+                "value": "287",
+                "label": "Residential units"
+              },
+              {
+                "value": "161",
+                "label": "Hotel keys"
+              }
+            ]
+          }
+        },
+        {
+          "id": "blk_003",
+          "type": "cardGrid",
+          "label": "Sectors",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 20,
+            "paddingBottom": 100,
+            "align": "left",
+            "animation": "stagger",
+            "animationDuration": 900,
+            "animationDelay": 0,
+            "gap": 26
+          },
+          "data": {
+            "eyebrow": "Capabilities · 01 — 04",
+            "heading": "Four disciplines. <em>One standard.</em>",
+            "columns": "4",
+            "showNumbers": true,
+            "ratio": "3/4",
+            "headingSide": "split",
+            "items": [
+              {
+                "image": "/uploads/diyar.jpg",
+                "title": "Residential",
+                "body": "Communities and residences designed for elevated, multi-generational living.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/movenpick.jpg",
+                "title": "Hospitality",
+                "body": "Hotels and dining that redefine the standards of Arabian service.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/jameel.jpg",
+                "title": "Commercial",
+                "body": "Grade-A offices and retail that anchor the heartbeat of modern Saudi cities.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/gravita.jpg",
+                "title": "Management",
+                "body": "Meticulous asset and facility stewardship that preserves lasting value.",
+                "href": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "blk_004",
+          "type": "workGrid",
+          "label": "Selected works",
+          "style": {
+            "theme": "dark",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 100,
+            "paddingBottom": 110,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Selected Works",
+            "heading": "Landmarks in <em>the making.</em>",
+            "ctaLabel": "View archive",
+            "ctaHref": "/portfolio",
+            "columns": "2",
+            "stagger": true,
+            "items": [
+              {
+                "image": "/uploads/jameel.jpg",
+                "kicker": "Commercial · Jeddah",
+                "meta": "2009",
+                "title": "Jameel Square",
+                "href": ""
+              },
+              {
+                "image": "/uploads/movenpick.jpg",
+                "kicker": "Hospitality · Tahlia",
+                "meta": "161 Keys",
+                "title": "Mövenpick Hotel",
+                "href": ""
+              },
+              {
+                "image": "/uploads/diyar.jpg",
+                "kicker": "Residential · Jeddah",
+                "meta": "228 Units",
+                "title": "Diyar Hadya",
+                "href": ""
+              },
+              {
+                "image": "/uploads/rasoi.jpg",
+                "kicker": "Fine Dining · Jeddah",
+                "meta": "Michelin",
+                "title": "Rasoi by Vineet",
+                "href": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "blk_005",
+          "type": "linkCards",
+          "label": "News teaser",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 90,
+            "paddingBottom": 90,
+            "align": "left",
+            "animation": "stagger",
+            "animationDuration": 900,
+            "animationDelay": 0,
+            "gap": 24
+          },
+          "data": {
+            "eyebrow": "Our News",
+            "heading": "Newsletters & updates.",
+            "description": "Quarterly newsletters covering our projects, milestones and market activity.",
+            "columns": "3",
+            "readLabel": "Read →",
+            "items": [
+              {
+                "kicker": "Q4 · 2018",
+                "title": "Hadya Newsletter — Q4 2018",
+                "href": "#"
+              },
+              {
+                "kicker": "Q1 · 2019",
+                "title": "Hadya Newsletter — Q1 2019",
+                "href": "#"
+              },
+              {
+                "kicker": "Q2 · 2019",
+                "title": "Hadya Newsletter — Q2 2019",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        {
+          "id": "blk_006",
+          "type": "ctaBand",
+          "label": "Careers CTA",
+          "style": {
+            "theme": "dark",
+            "bgType": "image",
+            "bgOverlay": 76,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 110,
+            "paddingBottom": 110,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0,
+            "bgImage": "/uploads/plaza.jpg"
+          },
+          "data": {
+            "eyebrow": "Careers",
+            "heading": "Build something that <em>endures.</em>",
+            "body": "We have a strong team who are deeply passionate about their work and hold themselves to high capability standards. If you share the same spirit and want to be part of our team, we'd like to hear from you.",
+            "buttonLabel": "Apply for a job →",
+            "buttonHref": "https://careers.hadya.com/",
+            "newTab": true,
+            "layout": "split"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_about",
+      "title": "About Us",
+      "slug": "about-us",
+      "navLabel": "About",
+      "showInNav": true,
+      "navOrder": 1,
+      "status": "published",
+      "seo": {
+        "title": "About Hadya",
+        "description": "Who we are, what we build and the standards we hold.",
+        "ogImage": "/uploads/jameel.jpg",
+        "noIndex": false
+      },
+      "style": {
+        "theme": "light",
+        "bgType": "none",
+        "bgOverlay": 0,
+        "bodyScale": 1,
+        "headingScale": 1,
+        "paddingTop": 84,
+        "paddingBottom": 84,
+        "align": "left",
+        "animation": "fade-up",
+        "animationDuration": 900,
+        "animationDelay": 0
+      },
+      "updatedAt": "2026-07-26T09:00:00Z",
+      "blocks": [
+        {
+          "id": "blk_007",
+          "type": "imageBanner",
+          "label": "Page banner",
+          "style": {
+            "theme": "dark",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 1000,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "About us",
+            "title": "A developer with the <em>instincts of a host.</em>",
+            "subtitle": "Residential, hospitality and commercial development across the Kingdom.",
+            "image": "/uploads/jameel.jpg",
+            "height": 56,
+            "overlay": 58
+          }
+        },
+        {
+          "id": "blk_008",
+          "type": "richText",
+          "label": "Introduction",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 90,
+            "paddingBottom": 40,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Who we are",
+            "heading": "Passion, persistence and <em>attention to detail.</em>",
+            "body": "<p>Hadya is a leading real estate development company with active strategic developments across the Kingdom of Saudi Arabia. Our core competencies span the full cycle of residential, hospitality and commercial property development, as well as facility management. Throughout our record, passion, persistence and attention to detail have distinguished our projects — and as we grow, we keep our promise to enrich the society we serve.</p><p>Our core competencies span the full cycle of property development — land acquisition, design management, delivery and long-term facility stewardship — with an emphasis on assets we intend to hold and operate rather than simply sell.</p>",
+            "columns": "1",
+            "measure": 66
+          }
+        },
+        {
+          "id": "blk_009",
+          "type": "statsBand",
+          "label": "Key numbers",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 10,
+            "paddingBottom": 90,
+            "align": "left",
+            "animation": "stagger",
+            "animationDuration": 900,
+            "animationDelay": 0
+          },
+          "data": {
+            "heading": "",
+            "columns": "4",
+            "divider": true,
+            "items": [
+              {
+                "value": "2009",
+                "label": "Founding flagship"
+              },
+              {
+                "value": "7",
+                "label": "Flagship developments"
+              },
+              {
+                "value": "287",
+                "label": "Residential units"
+              },
+              {
+                "value": "161",
+                "label": "Hotel keys"
+              }
+            ]
+          }
+        },
+        {
+          "id": "blk_010",
+          "type": "profile",
+          "label": "Leadership",
+          "style": {
+            "theme": "brand",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 90,
+            "paddingBottom": 90,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Our Team",
+            "heading": "An approach that focuses on <em>leadership.</em>",
+            "body": "Our success and excellence are due to our commitment to clear values and goals — a commitment that extends to the dedication of our team in reaching achievements that go beyond expectations.",
+            "image": "/uploads/ceo.jpg",
+            "label": "Executive Management",
+            "name": "Mr. Osama El Haddad",
+            "role": "President",
+            "mediaSide": "right"
+          }
+        },
+        {
+          "id": "blk_011",
+          "type": "ctaBand",
+          "label": "Careers CTA",
+          "style": {
+            "theme": "dark",
+            "bgType": "image",
+            "bgOverlay": 76,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 110,
+            "paddingBottom": 110,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0,
+            "bgImage": "/uploads/plaza.jpg"
+          },
+          "data": {
+            "eyebrow": "Careers",
+            "heading": "Build something that <em>endures.</em>",
+            "body": "We have a strong team who are deeply passionate about their work and hold themselves to high capability standards. If you share the same spirit and want to be part of our team, we'd like to hear from you.",
+            "buttonLabel": "Apply for a job →",
+            "buttonHref": "https://careers.hadya.com/",
+            "newTab": true,
+            "layout": "split"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_legacy",
+      "title": "Legacy",
+      "slug": "legacy",
+      "navLabel": "Legacy",
+      "showInNav": true,
+      "navOrder": 2,
+      "status": "published",
+      "seo": {
+        "title": "Our Legacy — Hadya",
+        "description": "More than fifteen years of building in the Kingdom.",
+        "ogImage": "/uploads/jameel.jpg",
+        "noIndex": false
+      },
+      "style": {
+        "theme": "light",
+        "bgType": "none",
+        "bgOverlay": 0,
+        "bodyScale": 1,
+        "headingScale": 1,
+        "paddingTop": 84,
+        "paddingBottom": 84,
+        "align": "left",
+        "animation": "fade-up",
+        "animationDuration": 900,
+        "animationDelay": 0
+      },
+      "updatedAt": "2026-07-26T09:00:00Z",
+      "blocks": [
+        {
+          "id": "blk_012",
+          "type": "imageBanner",
+          "label": "Page banner",
+          "style": {
+            "theme": "dark",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 1000,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Our Legacy",
+            "title": "Built to <em>outlast us.</em>",
+            "subtitle": "",
+            "image": "/uploads/plaza.jpg",
+            "height": 50,
+            "overlay": 60
+          }
+        },
+        {
+          "id": "blk_013",
+          "type": "splitFeature",
+          "label": "The statement",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 100,
+            "paddingBottom": 90,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Since 2009",
+            "statement": "We build with the reverence of a hotelier and the precision of a master developer <em>honoring Saudi heritage.</em>",
+            "body": "Hadya is a leading real estate development company with active strategic developments across the Kingdom of Saudi Arabia. Our core competencies span the full cycle of residential, hospitality and commercial property development, as well as facility management. Throughout our record, passion, persistence and attention to detail have distinguished our projects — and as we grow, we keep our promise to enrich the society we serve.",
+            "image": "/uploads/jameel.jpg",
+            "imageCaption": "Jameel Square",
+            "imageSub": "Commercial · Jeddah · Est. 2009",
+            "mediaSide": "right",
+            "tilt": true,
+            "showFlowLine": true,
+            "stats": []
+          }
+        },
+        {
+          "id": "blk_014",
+          "type": "statsBand",
+          "label": "By the numbers",
+          "style": {
+            "theme": "brand",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 80,
+            "paddingBottom": 80,
+            "align": "left",
+            "animation": "stagger",
+            "animationDuration": 900,
+            "animationDelay": 0
+          },
+          "data": {
+            "heading": "By the numbers",
+            "columns": "4",
+            "divider": true,
+            "items": [
+              {
+                "value": "2009",
+                "label": "Founding flagship"
+              },
+              {
+                "value": "7",
+                "label": "Flagship developments"
+              },
+              {
+                "value": "287",
+                "label": "Residential units"
+              },
+              {
+                "value": "161",
+                "label": "Hotel keys"
+              }
+            ]
+          }
+        },
+        {
+          "id": "blk_015",
+          "type": "gallery",
+          "label": "Gallery",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 90,
+            "paddingBottom": 100,
+            "align": "left",
+            "animation": "stagger",
+            "animationDuration": 900,
+            "animationDelay": 0,
+            "gap": 20
+          },
+          "data": {
+            "heading": "Moments from the portfolio",
+            "columns": "3",
+            "ratio": "4/3",
+            "items": [
+              {
+                "image": "/uploads/jameel.jpg",
+                "caption": "Jameel Square"
+              },
+              {
+                "image": "/uploads/movenpick.jpg",
+                "caption": "Mövenpick Hotel"
+              },
+              {
+                "image": "/uploads/diyar.jpg",
+                "caption": "Diyar Hadya"
+              }
+            ]
+          }
+        },
+        {
+          "id": "blk_unl7chf30x0",
+          "type": "cardGrid",
+          "label": "",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 84,
+            "paddingBottom": 84,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Capabilities · 01 — 04",
+            "heading": "Four disciplines. <em>One standard.</em>",
+            "columns": "4",
+            "columnsTablet": "2",
+            "columnsMobile": "1",
+            "showNumbers": true,
+            "ratio": "3/4",
+            "headingSide": "split",
+            "items": [
+              {
+                "image": "/uploads/diyar.jpg",
+                "title": "Residential",
+                "body": "Communities and residences designed for elevated, multi-generational living.",
+                "href": ""
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_portfolio",
+      "title": "Portfolio",
+      "slug": "portfolio",
+      "navLabel": "Portfolio",
+      "showInNav": true,
+      "navOrder": 3,
+      "status": "published",
+      "seo": {
+        "title": "Portfolio — Hadya",
+        "description": "Selected developments across Jeddah and the Kingdom.",
+        "ogImage": "/uploads/movenpick.jpg",
+        "noIndex": false
+      },
+      "style": {
+        "theme": "light",
+        "bgType": "none",
+        "bgOverlay": 0,
+        "bodyScale": 1,
+        "headingScale": 1,
+        "paddingTop": 84,
+        "paddingBottom": 84,
+        "align": "left",
+        "animation": "fade-up",
+        "animationDuration": 900,
+        "animationDelay": 0
+      },
+      "updatedAt": "2026-07-26T09:00:00Z",
+      "blocks": [
+        {
+          "id": "blk_016",
+          "type": "imageBanner",
+          "label": "Page banner",
+          "style": {
+            "theme": "dark",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 1000,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Selected Works",
+            "title": "Landmarks in <em>the making.</em>",
+            "subtitle": "Residential, hospitality, commercial and coworking assets.",
+            "image": "/uploads/movenpick.jpg",
+            "height": 54,
+            "overlay": 55
+          }
+        },
+        {
+          "id": "blk_017",
+          "type": "workGrid",
+          "label": "All projects",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 90,
+            "paddingBottom": 100,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "",
+            "heading": "",
+            "ctaLabel": "",
+            "ctaHref": "",
+            "columns": "2",
+            "stagger": true,
+            "items": [
+              {
+                "image": "/uploads/jameel.jpg",
+                "kicker": "Commercial · Jeddah",
+                "meta": "2009",
+                "title": "Jameel Square",
+                "href": ""
+              },
+              {
+                "image": "/uploads/movenpick.jpg",
+                "kicker": "Hospitality · Tahlia",
+                "meta": "161 Keys",
+                "title": "Mövenpick Hotel",
+                "href": ""
+              },
+              {
+                "image": "/uploads/diyar.jpg",
+                "kicker": "Residential · Jeddah",
+                "meta": "228 Units",
+                "title": "Diyar Hadya",
+                "href": ""
+              },
+              {
+                "image": "/uploads/rasoi.jpg",
+                "kicker": "Fine Dining · Jeddah",
+                "meta": "Michelin",
+                "title": "Rasoi by Vineet",
+                "href": ""
+              },
+              {
+                "image": "/uploads/plaza.jpg",
+                "kicker": "Retail · Corniche",
+                "meta": "Plaza 1 & 2",
+                "title": "Corniche Plaza",
+                "href": ""
+              },
+              {
+                "image": "/uploads/gravita.jpg",
+                "kicker": "Coworking · Jameel Square",
+                "meta": "Gravita",
+                "title": "Gravita Coworking",
+                "href": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "blk_018",
+          "type": "contact",
+          "label": "Contact details",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 90,
+            "paddingBottom": 70,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Get in touch",
+            "heading": "Let's discuss the <em>next landmark.</em>",
+            "hqLabel": "Headquarters",
+            "inquiriesLabel": "Inquiries",
+            "address": "Muhyi Ad Din An Nadhir, Al Ham'mra<br>Jeddah 23212, Kingdom of Saudi Arabia<br>P.O. Box 15496",
+            "email": "info@hadya.com",
+            "phone": "+966 12 6010 300",
+            "mapEmbed": "https://www.google.com/maps?q=Jameel%20Square%20Tahlia%20Jeddah%20Saudi%20Arabia&output=embed",
+            "showMap": true,
+            "showForm": true,
+            "formLabel": "Send us an email",
+            "formButton": "Send message"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_sectors",
+      "title": "Sectors",
+      "slug": "sectors",
+      "navLabel": "Sectors",
+      "showInNav": true,
+      "navOrder": 4,
+      "status": "published",
+      "seo": {
+        "title": "Sectors — Hadya",
+        "description": "Four disciplines, one standard.",
+        "ogImage": "/uploads/diyar.jpg",
+        "noIndex": false
+      },
+      "style": {
+        "theme": "light",
+        "bgType": "none",
+        "bgOverlay": 0,
+        "bodyScale": 1,
+        "headingScale": 1,
+        "paddingTop": 84,
+        "paddingBottom": 84,
+        "align": "left",
+        "animation": "fade-up",
+        "animationDuration": 900,
+        "animationDelay": 0
+      },
+      "updatedAt": "2026-07-26T09:00:00Z",
+      "blocks": [
+        {
+          "id": "blk_019",
+          "type": "imageBanner",
+          "label": "Page banner",
+          "style": {
+            "theme": "dark",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 1000,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Capabilities",
+            "title": "Four disciplines. <em>One standard.</em>",
+            "subtitle": "",
+            "image": "/uploads/diyar.jpg",
+            "height": 50,
+            "overlay": 58
+          }
+        },
+        {
+          "id": "blk_020",
+          "type": "cardGrid",
+          "label": "The four sectors",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 90,
+            "paddingBottom": 80,
+            "align": "left",
+            "animation": "stagger",
+            "animationDuration": 900,
+            "animationDelay": 0,
+            "gap": 26
+          },
+          "data": {
+            "eyebrow": "01 — 04",
+            "heading": "What we do",
+            "columns": "4",
+            "showNumbers": true,
+            "ratio": "3/4",
+            "headingSide": "split",
+            "items": [
+              {
+                "image": "/uploads/diyar.jpg",
+                "title": "Residential",
+                "body": "Communities and residences designed for elevated, multi-generational living.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/movenpick.jpg",
+                "title": "Hospitality",
+                "body": "Hotels and dining that redefine the standards of Arabian service.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/jameel.jpg",
+                "title": "Commercial",
+                "body": "Grade-A offices and retail that anchor the heartbeat of modern Saudi cities.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/gravita.jpg",
+                "title": "Management",
+                "body": "Meticulous asset and facility stewardship that preserves lasting value.",
+                "href": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "blk_021",
+          "type": "accordion",
+          "label": "FAQ",
+          "style": {
+            "theme": "brand",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 80,
+            "paddingBottom": 90,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Common questions",
+            "heading": "Working with Hadya",
+            "items": [
+              {
+                "q": "Do you develop for third parties?",
+                "a": "<p>We primarily develop and hold our own assets, though we selectively partner on projects that fit our long-term standards.</p>"
+              },
+              {
+                "q": "Which cities do you operate in?",
+                "a": "<p>Our current portfolio is concentrated in Jeddah, with strategic developments across the Kingdom.</p>"
+              },
+              {
+                "q": "Do you manage assets you did not build?",
+                "a": "<p>Yes. Our facility management arm takes on qualified third-party assets where our operating standards can be applied end to end.</p>"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_team",
+      "title": "Leadership",
+      "slug": "leadership",
+      "navLabel": "Leadership",
+      "showInNav": false,
+      "navOrder": 5,
+      "status": "published",
+      "seo": {
+        "title": "Leadership — Hadya",
+        "description": "Executive management.",
+        "ogImage": "/uploads/ceo.jpg",
+        "noIndex": false
+      },
+      "style": {
+        "theme": "light",
+        "bgType": "none",
+        "bgOverlay": 0,
+        "bodyScale": 1,
+        "headingScale": 1,
+        "paddingTop": 84,
+        "paddingBottom": 84,
+        "align": "left",
+        "animation": "fade-up",
+        "animationDuration": 900,
+        "animationDelay": 0
+      },
+      "updatedAt": "2026-07-26T09:00:00Z",
+      "blocks": [
+        {
+          "id": "blk_022",
+          "type": "imageBanner",
+          "label": "Page banner",
+          "style": {
+            "theme": "dark",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 1000,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Our Team",
+            "title": "An approach that focuses on <em>leadership.</em>",
+            "subtitle": "",
+            "image": "/uploads/gravita.jpg",
+            "height": 46,
+            "overlay": 60
+          }
+        },
+        {
+          "id": "blk_023",
+          "type": "profile",
+          "label": "President",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 90,
+            "paddingBottom": 100,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Executive Management",
+            "heading": "Clear values. <em>Clear goals.</em>",
+            "body": "Our success and excellence are due to our commitment to clear values and goals — a commitment that extends to the dedication of our team in reaching achievements that go beyond expectations.",
+            "image": "/uploads/ceo.jpg",
+            "label": "Executive Management",
+            "name": "Mr. Osama El Haddad",
+            "role": "President",
+            "mediaSide": "right"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_news",
+      "title": "News",
+      "slug": "news",
+      "navLabel": "News",
+      "showInNav": true,
+      "navOrder": 6,
+      "status": "published",
+      "seo": {
+        "title": "News — Hadya",
+        "description": "Newsletters and updates.",
+        "ogImage": "/uploads/gravita.jpg",
+        "noIndex": false
+      },
+      "style": {
+        "theme": "light",
+        "bgType": "none",
+        "bgOverlay": 0,
+        "bodyScale": 1,
+        "headingScale": 1,
+        "paddingTop": 84,
+        "paddingBottom": 84,
+        "align": "left",
+        "animation": "fade-up",
+        "animationDuration": 900,
+        "animationDelay": 0
+      },
+      "updatedAt": "2026-07-26T09:00:00Z",
+      "blocks": [
+        {
+          "id": "blk_024",
+          "type": "imageBanner",
+          "label": "Page banner",
+          "style": {
+            "theme": "dark",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 1000,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Our News",
+            "title": "Newsletters & <em>updates.</em>",
+            "subtitle": "Quarterly newsletters covering our projects, milestones and market activity.",
+            "image": "/uploads/gravita.jpg",
+            "height": 46,
+            "overlay": 58
+          }
+        },
+        {
+          "id": "blk_025",
+          "type": "linkCards",
+          "label": "All newsletters",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 90,
+            "paddingBottom": 100,
+            "align": "left",
+            "animation": "stagger",
+            "animationDuration": 900,
+            "animationDelay": 0,
+            "gap": 24
+          },
+          "data": {
+            "eyebrow": "",
+            "heading": "",
+            "description": "",
+            "columns": "3",
+            "readLabel": "Read →",
+            "items": [
+              {
+                "kicker": "Q4 · 2018",
+                "title": "Hadya Newsletter — Q4 2018",
+                "href": "#"
+              },
+              {
+                "kicker": "Q1 · 2019",
+                "title": "Hadya Newsletter — Q1 2019",
+                "href": "#"
+              },
+              {
+                "kicker": "Q2 · 2019",
+                "title": "Hadya Newsletter — Q2 2019",
+                "href": "#"
+              },
+              {
+                "kicker": "Q3 · 2019",
+                "title": "Hadya Newsletter — Q3 2019",
+                "href": "#"
+              },
+              {
+                "kicker": "Q4 · 2019",
+                "title": "Hadya Newsletter — Q4 2019",
+                "href": "#"
+              },
+              {
+                "kicker": "Q3 · 2020",
+                "title": "Jameel Square Newsletter — Q3 2020",
+                "href": "#"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_careers",
+      "title": "Careers",
+      "slug": "careers",
+      "navLabel": "Careers",
+      "showInNav": true,
+      "navOrder": 7,
+      "status": "published",
+      "seo": {
+        "title": "Careers — Hadya",
+        "description": "Join a team that builds things meant to last.",
+        "ogImage": "/uploads/plaza.jpg",
+        "noIndex": false
+      },
+      "style": {
+        "theme": "light",
+        "bgType": "none",
+        "bgOverlay": 0,
+        "bodyScale": 1,
+        "headingScale": 1,
+        "paddingTop": 84,
+        "paddingBottom": 84,
+        "align": "left",
+        "animation": "fade-up",
+        "animationDuration": 900,
+        "animationDelay": 0
+      },
+      "updatedAt": "2026-07-26T09:00:00Z",
+      "blocks": [
+        {
+          "id": "blk_026",
+          "type": "imageBanner",
+          "label": "Page banner",
+          "style": {
+            "theme": "dark",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 1000,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Careers",
+            "title": "Build something that <em>endures.</em>",
+            "subtitle": "",
+            "image": "/uploads/rasoi.jpg",
+            "height": 48,
+            "overlay": 60
+          }
+        },
+        {
+          "id": "blk_027",
+          "type": "richText",
+          "label": "Why Hadya",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 90,
+            "paddingBottom": 70,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Why Hadya",
+            "heading": "High standards, <em>held quietly.</em>",
+            "body": "<p>We have a strong team who are deeply passionate about their work and hold themselves to high capability standards. If you share the same spirit and want to be part of our team, we'd like to hear from you.</p><ul><li>Development and project management</li><li>Hospitality operations</li><li>Facility and asset management</li><li>Finance and corporate services</li></ul>",
+            "columns": "1",
+            "measure": 64
+          }
+        },
+        {
+          "id": "blk_028",
+          "type": "ctaBand",
+          "label": "Careers CTA",
+          "style": {
+            "theme": "dark",
+            "bgType": "image",
+            "bgOverlay": 76,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 110,
+            "paddingBottom": 110,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0,
+            "bgImage": "/uploads/plaza.jpg"
+          },
+          "data": {
+            "eyebrow": "Careers",
+            "heading": "Build something that <em>endures.</em>",
+            "body": "We have a strong team who are deeply passionate about their work and hold themselves to high capability standards. If you share the same spirit and want to be part of our team, we'd like to hear from you.",
+            "buttonLabel": "Apply for a job →",
+            "buttonHref": "https://careers.hadya.com/",
+            "newTab": true,
+            "layout": "split"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_contact",
+      "title": "Contact Us",
+      "slug": "contact-us",
+      "navLabel": "Contact",
+      "showInNav": true,
+      "navOrder": 8,
+      "status": "published",
+      "seo": {
+        "title": "Contact — Hadya",
+        "description": "Head office in Jeddah, Kingdom of Saudi Arabia.",
+        "ogImage": "/uploads/plaza.jpg",
+        "noIndex": false
+      },
+      "style": {
+        "theme": "light",
+        "bgType": "none",
+        "bgOverlay": 0,
+        "bodyScale": 1,
+        "headingScale": 1,
+        "paddingTop": 84,
+        "paddingBottom": 84,
+        "align": "left",
+        "animation": "fade-up",
+        "animationDuration": 900,
+        "animationDelay": 0
+      },
+      "updatedAt": "2026-07-26T09:00:00Z",
+      "blocks": [
+        {
+          "id": "blk_029",
+          "type": "imageBanner",
+          "label": "Page banner",
+          "style": {
+            "theme": "dark",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 1000,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Get in touch",
+            "title": "Let's discuss the <em>next landmark.</em>",
+            "subtitle": "",
+            "image": "/uploads/plaza.jpg",
+            "height": 44,
+            "overlay": 62
+          }
+        },
+        {
+          "id": "blk_030",
+          "type": "contact",
+          "label": "Contact details",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 90,
+            "paddingBottom": 70,
+            "align": "left",
+            "animation": "fade-up",
+            "animationDuration": 900,
+            "animationDelay": 0
+          },
+          "data": {
+            "eyebrow": "Get in touch",
+            "heading": "Let's discuss the <em>next landmark.</em>",
+            "hqLabel": "Headquarters",
+            "inquiriesLabel": "Inquiries",
+            "address": "Muhyi Ad Din An Nadhir, Al Ham'mra<br>Jeddah 23212, Kingdom of Saudi Arabia<br>P.O. Box 15496",
+            "email": "info@hadya.com",
+            "phone": "+966 12 6010 300",
+            "mapEmbed": "https://www.google.com/maps?q=Jameel%20Square%20Tahlia%20Jeddah%20Saudi%20Arabia&output=embed",
+            "showMap": true,
+            "showForm": true,
+            "formLabel": "Send us an email",
+            "formButton": "Send message"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_demo",
+      "title": "Grid demo",
+      "slug": "grid-demo",
+      "navLabel": "Demo",
+      "showInNav": false,
+      "navOrder": 50,
+      "status": "published",
+      "seo": {
+        "title": "Grid demo",
+        "description": "",
+        "ogImage": "",
+        "noIndex": true
+      },
+      "style": {
+        "theme": "light",
+        "bgType": "none",
+        "bgOverlay": 0,
+        "bodyScale": 1,
+        "headingScale": 1,
+        "paddingTop": 70,
+        "paddingBottom": 70,
+        "align": "left",
+        "animation": "stagger",
+        "animationDuration": 900,
+        "animationDelay": 0,
+        "gap": 24
+      },
+      "blocks": [
+        {
+          "id": "demo_0",
+          "type": "productGrid",
+          "label": "Demo below",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 70,
+            "paddingBottom": 70,
+            "align": "left",
+            "animation": "stagger",
+            "animationDuration": 900,
+            "animationDelay": 0,
+            "gap": 24
+          },
+          "data": {
+            "eyebrow": "cardStyle = below",
+            "heading": "3 columns · 1/1",
+            "columns": "3",
+            "columnsTablet": "2",
+            "columnsMobile": "1",
+            "cardStyle": "below",
+            "ratio": "1/1",
+            "overlayStrength": 45,
+            "hoverZoom": true,
+            "showTag": true,
+            "showBody": true,
+            "showPrice": true,
+            "ctaLabel": "View →",
+            "items": [
+              {
+                "image": "/uploads/diyar.jpg",
+                "title": "Diyar Hadya",
+                "tag": "Residential",
+                "price": "228 Units",
+                "body": "Communities designed for elevated living.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/movenpick.jpg",
+                "title": "Mövenpick",
+                "tag": "Hospitality",
+                "price": "161 Keys",
+                "body": "Hotels that redefine Arabian service.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/jameel.jpg",
+                "title": "Jameel Square",
+                "tag": "Commercial",
+                "price": "2009",
+                "body": "Grade-A offices and retail.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/gravita.jpg",
+                "title": "Gravita",
+                "tag": "Coworking",
+                "price": "—",
+                "body": "Flexible workspace.",
+                "href": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "demo_1",
+          "type": "productGrid",
+          "label": "Demo boxed",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 70,
+            "paddingBottom": 70,
+            "align": "left",
+            "animation": "stagger",
+            "animationDuration": 900,
+            "animationDelay": 0,
+            "gap": 24
+          },
+          "data": {
+            "eyebrow": "cardStyle = boxed",
+            "heading": "2 columns · 4/3",
+            "columns": "2",
+            "columnsTablet": "2",
+            "columnsMobile": "1",
+            "cardStyle": "boxed",
+            "ratio": "4/3",
+            "overlayStrength": 45,
+            "hoverZoom": true,
+            "showTag": true,
+            "showBody": true,
+            "showPrice": true,
+            "ctaLabel": "View →",
+            "items": [
+              {
+                "image": "/uploads/diyar.jpg",
+                "title": "Diyar Hadya",
+                "tag": "Residential",
+                "price": "228 Units",
+                "body": "Communities designed for elevated living.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/movenpick.jpg",
+                "title": "Mövenpick",
+                "tag": "Hospitality",
+                "price": "161 Keys",
+                "body": "Hotels that redefine Arabian service.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/jameel.jpg",
+                "title": "Jameel Square",
+                "tag": "Commercial",
+                "price": "2009",
+                "body": "Grade-A offices and retail.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/gravita.jpg",
+                "title": "Gravita",
+                "tag": "Coworking",
+                "price": "—",
+                "body": "Flexible workspace.",
+                "href": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "demo_2",
+          "type": "productGrid",
+          "label": "Demo overlay",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 70,
+            "paddingBottom": 70,
+            "align": "left",
+            "animation": "stagger",
+            "animationDuration": 900,
+            "animationDelay": 0,
+            "gap": 24
+          },
+          "data": {
+            "eyebrow": "cardStyle = overlay",
+            "heading": "4 columns · 3/4",
+            "columns": "4",
+            "columnsTablet": "2",
+            "columnsMobile": "1",
+            "cardStyle": "overlay",
+            "ratio": "3/4",
+            "overlayStrength": 45,
+            "hoverZoom": true,
+            "showTag": true,
+            "showBody": true,
+            "showPrice": true,
+            "ctaLabel": "View →",
+            "items": [
+              {
+                "image": "/uploads/diyar.jpg",
+                "title": "Diyar Hadya",
+                "tag": "Residential",
+                "price": "228 Units",
+                "body": "Communities designed for elevated living.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/movenpick.jpg",
+                "title": "Mövenpick",
+                "tag": "Hospitality",
+                "price": "161 Keys",
+                "body": "Hotels that redefine Arabian service.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/jameel.jpg",
+                "title": "Jameel Square",
+                "tag": "Commercial",
+                "price": "2009",
+                "body": "Grade-A offices and retail.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/gravita.jpg",
+                "title": "Gravita",
+                "tag": "Coworking",
+                "price": "—",
+                "body": "Flexible workspace.",
+                "href": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "demo_3",
+          "type": "productGrid",
+          "label": "Demo overlay-bottom",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 70,
+            "paddingBottom": 70,
+            "align": "left",
+            "animation": "stagger",
+            "animationDuration": 900,
+            "animationDelay": 0,
+            "gap": 24
+          },
+          "data": {
+            "eyebrow": "cardStyle = overlay-bottom",
+            "heading": "2 columns · 16/9",
+            "columns": "2",
+            "columnsTablet": "2",
+            "columnsMobile": "1",
+            "cardStyle": "overlay-bottom",
+            "ratio": "16/9",
+            "overlayStrength": 45,
+            "hoverZoom": true,
+            "showTag": true,
+            "showBody": true,
+            "showPrice": true,
+            "ctaLabel": "View →",
+            "items": [
+              {
+                "image": "/uploads/diyar.jpg",
+                "title": "Diyar Hadya",
+                "tag": "Residential",
+                "price": "228 Units",
+                "body": "Communities designed for elevated living.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/movenpick.jpg",
+                "title": "Mövenpick",
+                "tag": "Hospitality",
+                "price": "161 Keys",
+                "body": "Hotels that redefine Arabian service.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/jameel.jpg",
+                "title": "Jameel Square",
+                "tag": "Commercial",
+                "price": "2009",
+                "body": "Grade-A offices and retail.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/gravita.jpg",
+                "title": "Gravita",
+                "tag": "Coworking",
+                "price": "—",
+                "body": "Flexible workspace.",
+                "href": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "demo_4",
+          "type": "productGrid",
+          "label": "Demo overlay-hover",
+          "style": {
+            "theme": "light",
+            "bgType": "none",
+            "bgOverlay": 0,
+            "bodyScale": 1,
+            "headingScale": 1,
+            "paddingTop": 70,
+            "paddingBottom": 70,
+            "align": "left",
+            "animation": "stagger",
+            "animationDuration": 900,
+            "animationDelay": 0,
+            "gap": 24
+          },
+          "data": {
+            "eyebrow": "cardStyle = overlay-hover",
+            "heading": "3 columns · 1/1",
+            "columns": "3",
+            "columnsTablet": "2",
+            "columnsMobile": "1",
+            "cardStyle": "overlay-hover",
+            "ratio": "1/1",
+            "overlayStrength": 45,
+            "hoverZoom": true,
+            "showTag": true,
+            "showBody": true,
+            "showPrice": true,
+            "ctaLabel": "View →",
+            "items": [
+              {
+                "image": "/uploads/diyar.jpg",
+                "title": "Diyar Hadya",
+                "tag": "Residential",
+                "price": "228 Units",
+                "body": "Communities designed for elevated living.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/movenpick.jpg",
+                "title": "Mövenpick",
+                "tag": "Hospitality",
+                "price": "161 Keys",
+                "body": "Hotels that redefine Arabian service.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/jameel.jpg",
+                "title": "Jameel Square",
+                "tag": "Commercial",
+                "price": "2009",
+                "body": "Grade-A offices and retail.",
+                "href": ""
+              },
+              {
+                "image": "/uploads/gravita.jpg",
+                "title": "Gravita",
+                "tag": "Coworking",
+                "price": "—",
+                "body": "Flexible workspace.",
+                "href": ""
+              }
+            ]
+          }
+        }
+      ],
+      "updatedAt": "2026-07-26T00:00:00Z"
+    }
+  ],
+  "media": [
+    {
+      "id": "m_2nlddiwtsbe",
+      "url": "/uploads/hadya-test-hero-msn9tsa6.mp4",
+      "objectName": "hadya-test-hero-msn9tsa6.mp4",
+      "name": "hadya-test-hero.mp4",
+      "size": 871096,
+      "uploadedAt": "2026-08-10T13:32:23.834Z",
+      "kind": "video"
+    },
+    {
+      "id": "m_7xpho86b6p5",
+      "url": "/uploads/my-movie-msn9b6f5.mp4",
+      "objectName": "my-movie-msn9b6f5.mp4",
+      "name": "My Movie.mp4",
+      "size": 52079339,
+      "uploadedAt": "2026-08-10T13:17:56.009Z",
+      "kind": "video"
+    },
+    {
+      "id": "m_seed00",
+      "url": "/uploads/hero.jpg",
+      "name": "hero.jpg",
+      "size": 105947,
+      "uploadedAt": "2026-07-26T09:00:00Z"
+    },
+    {
+      "id": "m_seed01",
+      "url": "/uploads/jameel.jpg",
+      "name": "jameel.jpg",
+      "size": 49223,
+      "uploadedAt": "2026-07-26T09:00:00Z"
+    },
+    {
+      "id": "m_seed02",
+      "url": "/uploads/movenpick.jpg",
+      "name": "movenpick.jpg",
+      "size": 85700,
+      "uploadedAt": "2026-07-26T09:00:00Z"
+    },
+    {
+      "id": "m_seed03",
+      "url": "/uploads/diyar.jpg",
+      "name": "diyar.jpg",
+      "size": 44153,
+      "uploadedAt": "2026-07-26T09:00:00Z"
+    },
+    {
+      "id": "m_seed04",
+      "url": "/uploads/rasoi.jpg",
+      "name": "rasoi.jpg",
+      "size": 91935,
+      "uploadedAt": "2026-07-26T09:00:00Z"
+    },
+    {
+      "id": "m_seed05",
+      "url": "/uploads/plaza.jpg",
+      "name": "plaza.jpg",
+      "size": 29186,
+      "uploadedAt": "2026-07-26T09:00:00Z"
+    },
+    {
+      "id": "m_seed06",
+      "url": "/uploads/gravita.jpg",
+      "name": "gravita.jpg",
+      "size": 86718,
+      "uploadedAt": "2026-07-26T09:00:00Z"
+    },
+    {
+      "id": "m_seed07",
+      "url": "/uploads/ceo.jpg",
+      "name": "ceo.jpg",
+      "size": 23678,
+      "uploadedAt": "2026-07-26T09:00:00Z"
+    },
+    {
+      "id": "m_seed08",
+      "url": "/uploads/emb_gold.png",
+      "name": "emb_gold.png",
+      "size": 32413,
+      "uploadedAt": "2026-07-26T09:00:00Z"
+    },
+    {
+      "id": "m_seed09",
+      "url": "/uploads/emb_navy.png",
+      "name": "emb_navy.png",
+      "size": 32409,
+      "uploadedAt": "2026-07-26T09:00:00Z"
+    }
+  ],
+  "version": 17
+}

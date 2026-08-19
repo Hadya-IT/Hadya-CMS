@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+/* ==================================================================
+   Design tokens.
+
+   Two namespaces, deliberately kept apart:
+
+   1. Admin portal — fixed values. Paper-white panels on a soft grey app
+      background. The only saturated colour is the brand gold, reserved
+      for the current selection and the primary action, so the interface
+      never competes with the cream/serif site being edited.
+      Note: this gold (#8a6c25) is darker than the site's #c1a06a, which
+      is legible on navy but not on white.
+
+   2. Public site — every value resolves to a CSS custom property that is
+      written at runtime. `tokensToCss()` puts the site-wide tokens on the
+      layout wrapper; `envelopeToCss()` puts the per-section overrides on
+      each <section>. That indirection is the whole point: one style panel
+      in the admin can restyle any block, so these cannot be static.
+   ================================================================== */
+
+@theme {
+  /* ---------------- admin portal ---------------- */
+  --color-app: #f5f6f8;
+  --color-panel: #ffffff;
+  --color-subtle: #eceff4;
+  --color-edge: #dde1e8;
+  --color-edge-strong: #bcc4d0;
+  --color-ink: #1b222d;
+  --color-ink-lift: #2a3444;
+  --color-dim: #667080;
+  --color-gold: #8a6c25;
+  --color-danger: #c0392b;
+  --color-danger-ink: #8c2c20;
+  --color-ok: #1c7a4d;
+
+  --radius-panel: 7px;
+
+  /* ---------------- public site: site scope ----------------
+     Set inline by tokensToCss() on the layout wrapper. Used by the header,
+     footer and splash, which sit outside any section and so have no
+     --sec-* variables to read. */
+  --color-brand-cream: var(--cream);
+  --color-brand-cream-2: var(--cream-2);
+  --color-brand-ink: var(--ink);
+  --color-brand-ink-soft: var(--ink-soft);
+  --color-brand-gold: var(--gold);
+  --color-brand-gold-soft: var(--gold-soft);
+  --color-brand-navy: var(--navy);
+  --color-brand-line: var(--line);
+
+  --container-site: var(--content-width, 1280px);
+  --radius-brand: var(--radius, 4px);
+
+  /* ---------------- public site: section scope ----------------
+     Set inline by envelopeToCss() on every <section>. */
+  --color-sec: var(--sec-bg);
+  --color-sec-text: var(--sec-text);
+  --color-sec-heading: var(--sec-heading);
+  --color-sec-accent: var(--sec-accent);
+  --color-sec-line: var(--sec-line);
+
+  --font-heading: var(--sec-heading-font);
+  --font-body: var(--sec-body-font);
+
+  --tracking-sec: var(--sec-tracking, 0em);
+  --leading-sec: var(--sec-leading, 1.6);
+  --radius-sec: var(--sec-radius, 4px);
+  --container-sec: var(--sec-max, 1280px);
+
+  /* Type scale. Editor-controlled multipliers ride on top of a clamp, so
+     the scale stays responsive at any multiplier. */
+  --text-eyebrow: calc(0.72rem * var(--sec-body-scale, 1));
+  --text-body: calc(var(--base-size, 1rem) * var(--sec-body-scale, 1));
+  --text-lede: calc(var(--base-size, 1rem) * 1.15 * var(--sec-body-scale, 1));
+  --text-display: calc(clamp(2.6rem, 5.6vw, 4.6rem) * var(--sec-heading-scale, 1));
+  --text-h2: calc(clamp(1.85rem, 3.1vw, 2.7rem) * var(--sec-heading-scale, 1));
+  --text-h2-lg: calc(clamp(2.1rem, 4vw, 3.4rem) * var(--sec-heading-scale, 1));
+  --text-h3: calc(clamp(1.05rem, 1.3vw, 1.3rem) * var(--sec-heading-scale, 1));
+  --text-stat: calc(clamp(2.2rem, 3.6vw, 3.2rem) * var(--sec-heading-scale, 1));
+
+  /* ---------------- public site: keyframes ----------------
+     Only for motion that genuinely needs keyframes. Everything that is a
+     simple state transition is a utility on the element instead. */
+  --animate-kenburns: kenburns 22s ease-out forwards;
+  --animate-flow: flow 3.4s ease-in-out infinite;
+  --animate-scroll-hint: scroll-hint 2.2s ease-in-out infinite;
+
+  @keyframes kenburns {
+    from { transform: scale(1); }
+    to   { transform: scale(1.12); }
+  }
+  @keyframes flow {
+    0%   { stroke-dashoffset: 1000; opacity: 0; }
+    12%  { opacity: 1; }
+    88%  { opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+  @keyframes scroll-hint {
+    0%, 100% { transform: translateY(0); opacity: .55; }
+    50%      { transform: translateY(6px); opacity: 1; }
+  }
+}
+
+/* Editor-authored HTML arrives as a trusted string from the CMS, so it has
+   no classes to hook. These are the only element selectors in the project,
+   scoped to that content, and they exist because there is no markup to
+   attach a utility to. */
+@layer base {
+  [data-rich] :where(p) { margin-block-end: 1em; }
+  [data-rich] :where(p):last-child { margin-block-end: 0; }
+  [data-rich] :where(strong) { color: var(--sec-heading); font-weight: 600; }
+  [data-rich] :where(em) { font-style: italic; }
+  [data-rich] :where(a) {
+    color: var(--sec-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  [data-rich] :where(ul, ol) {
+    margin-block-end: 1em;
+    padding-inline-start: 1.15em;
+  }
+  [data-rich] :where(ul) { list-style: disc; }
+  [data-rich] :where(ol) { list-style: decimal; }
+  [data-rich] :where(li) { margin-block-end: .35em; }
+
+  /* Headline accents inside CMS <h1>/<h2> strings. */
+  [data-display] :where(em) {
+    font-style: italic;
+    color: var(--sec-accent);
+  }
+}
