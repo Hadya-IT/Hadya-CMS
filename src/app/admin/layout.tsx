@@ -1,5 +1,6 @@
 import AdminProvider from '@/components/admin/AdminProvider';
 import AdminShell from '@/components/admin/AdminShell';
+import { DialogProvider } from '@/components/admin/Dialog';
 
 export const metadata = { title: 'Hadya CMS' };
 
@@ -8,7 +9,9 @@ export const metadata = { title: 'Hadya CMS' };
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <AdminProvider>
-      <AdminShell>{children}</AdminShell>
+      <DialogProvider>
+        <AdminShell>{children}</AdminShell>
+      </DialogProvider>
     </AdminProvider>
   );
 }

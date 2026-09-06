@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useAdmin } from '@/components/admin/AdminProvider';
+import { useDialog } from '@/components/admin/Dialog';
 import { Field } from '@/components/admin/Fields';
 import StylePanel from '@/components/admin/StylePanel';
 import {
@@ -15,6 +16,7 @@ import {
   cx,
 } from '@/components/admin/ui';
 import { BLOCKS, BLOCK_MAP, BLOCK_GROUPS } from '@/blocks/registry';
+import WorkflowBar from '@/components/admin/WorkflowBar';
 
 /* Four panes on a wide screen; stacked below that. The original grid had a
    fixed 1150px-wide track set, which made the editor unusable on a laptop
@@ -27,6 +29,7 @@ const PANE = 'min-w-0 border-b border-edge xl:overflow-y-auto xl:border-b-0 xl:b
 
 export default function PagesEditor() {
   const { doc, loading, update, newBlock, newPage, save, dirty } = useAdmin();
+  const dialog = useDialog();
   const [pageId, setPageId] = useState<string>('');
   const [blockId, setBlockId] = useState<string>('');
   const [tab, setTab] = useState<'content' | 'style' | 'page'>('content');
@@ -43,6 +46,12 @@ export default function PagesEditor() {
 
   if (loading || !doc) return <div className="p-[22px] text-dim">Loading…</div>;
 
+  /* The GET /api/content response carries the caller's role. Only the
+     Marketing Admin gets the direct status control — everyone else
+     publishes through the review queue, and the server ignores the
+     field from them anyway. */
+  const isAdmin = (doc as any)._role === 'MARKETING_ADMIN';
+
   /* ---------------- page ops ---------------- */
   const addPage = () => {
     const p = newPage();
@@ -51,9 +60,15 @@ export default function PagesEditor() {
     setBlockId('');
     setTab('page');
   };
-  const deletePage = (id: string) => {
+  const deletePage = async (id: string) => {
     const p = doc.pages.find((x) => x.id === id);
-    if (!confirm(`Delete "${p?.title}" and its ${p?.blocks.length} sections? This cannot be undone.`)) return;
+    const sure = await dialog.confirm({
+      title: `Delete "${p?.title}"?`,
+      body: `Its ${p?.blocks.length} section(s) go with it. This cannot be undone.`,
+      confirmLabel: 'Delete page',
+      danger: true,
+    });
+    if (!sure) return;
     update((d) => { d.pages = d.pages.filter((x) => x.id !== id); });
     setPageId(doc.pages.find((x) => x.id !== id)?.id || '');
   };
@@ -178,6 +193,39 @@ export default function PagesEditor() {
 
         {showLibrary && (
           <div className="mb-2.5 border-b border-edge px-2 pb-3.5">
+            {(doc.sharedBlocks?.length ?? 0) > 0 && (
+              <div>
+                <h4 className="mb-1.5 mt-3 text-[10px] uppercase tracking-[0.14em] text-dim">
+                  Shared components
+                </h4>
+                {doc.sharedBlocks!.map((sb) => (
+                  <button
+                    type="button"
+                    key={sb.id}
+                    onClick={() => {
+                      const b = newBlock('shared' as any);
+                      b.type = 'shared';
+                      b.data = { refId: sb.id };
+                      b.label = sb.name;
+                      update((d) => { d.pages.find((pp) => pp.id === pageId)?.blocks.push(b); });
+                      setBlockId(b.id);
+                      setTab('content');
+                      setShowLibrary(false);
+                    }}
+                    className="mb-1 flex w-full cursor-pointer gap-2.5 rounded-panel border border-edge
+                      bg-panel px-2.5 py-2 text-left transition-colors hover:border-gold"
+                  >
+                    <span aria-hidden="true" className="text-gold">⧉</span>
+                    <span className="min-w-0">
+                      <strong className="block text-xs font-medium">{sb.name}</strong>
+                      <small className="block text-[10.5px] leading-snug text-dim">
+                        Edited once in Shared components, updates every page.
+                      </small>
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
             {BLOCK_GROUPS.map((g) => (
               <div key={g}>
                 <h4 className="mb-1.5 mt-3 text-[10px] uppercase tracking-[0.14em] text-dim">{g}</h4>
@@ -221,7 +269,10 @@ export default function PagesEditor() {
                   </span>
                   <span className="min-w-0">
                     <strong className="block text-[12.5px] font-medium">
-                      {b.label || BLOCK_MAP[b.type]?.name || b.type}
+                      {b.label ||
+                        (b.type === 'shared'
+                          ? doc.sharedBlocks?.find((sb) => sb.id === b.data?.refId)?.name || 'Shared component'
+                          : BLOCK_MAP[b.type]?.name || b.type)}
                     </strong>
                     <small className="block text-[10.5px] capitalize text-dim">
                       {b.style?.theme} · {b.style?.animation}
@@ -277,6 +328,7 @@ export default function PagesEditor() {
         <div className="px-3.5 pb-15 pt-4">
           {tab === 'page' && page && (
             <>
+              <WorkflowBar page={page} />
               <Field def={{ name: 'title', label: 'Page title', type: 'text' }} value={page.title} onChange={(v) => setPageField('title', v)} />
               <Field
                 def={{ name: 'slug', label: 'URL slug', type: 'text', help: 'Leave empty for the home page. No leading slash.' }}
@@ -284,9 +336,17 @@ export default function PagesEditor() {
                 onChange={(v) => setPageField('slug', String(v).replace(/^\/+/, '').replace(/[^a-z0-9\-\/]/gi, '-').toLowerCase())}
               />
               <Row>
-                <Field def={{ name: 'status', label: 'Status', type: 'select', options: [
-                  { label: 'Draft', value: 'draft' }, { label: 'Published', value: 'published' },
-                ]}} value={page.status} onChange={(v) => setPageField('status', v)} />
+                {isAdmin ? (
+                  <Field def={{ name: 'status', label: 'Status', type: 'select', options: [
+                    { label: 'Draft', value: 'draft' }, { label: 'Published', value: 'published' },
+                  ]}} value={page.status} onChange={(v) => setPageField('status', v)} />
+                ) : (
+                  <div>
+                    <Muted className="mb-1 block text-[11px] uppercase tracking-[0.08em]">Status</Muted>
+                    <Pill tone={page.status === 'published' ? 'ok' : 'neutral'}>{page.status}</Pill>
+                    <Muted className="mt-1 block text-[11px]">Publishing goes through the review queue.</Muted>
+                  </div>
+                )}
                 <Field def={{ name: 'navOrder', label: 'Menu order', type: 'number', min: 0, max: 99 }} value={page.navOrder} onChange={(v) => setPageField('navOrder', v)} />
               </Row>
               <Row>
@@ -299,6 +359,16 @@ export default function PagesEditor() {
               <Field def={{ name: 'seoDesc', label: 'Meta description', type: 'textarea' }} value={page.seo?.description} onChange={(v) => setPageField('seo', { ...page.seo, description: v })} />
               <Field def={{ name: 'ogImage', label: 'Share image', type: 'image' }} value={page.seo?.ogImage} onChange={(v) => setPageField('seo', { ...page.seo, ogImage: v })} />
               <Field def={{ name: 'noIndex', label: 'Hide from search engines', type: 'boolean' }} value={page.seo?.noIndex} onChange={(v) => setPageField('seo', { ...page.seo, noIndex: v })} />
+              <Field
+                def={{ name: 'canonical', label: 'Canonical URL', type: 'url', help: 'Only when this page mirrors another URL. Empty = this page is its own canonical.' }}
+                value={page.seo?.canonical}
+                onChange={(v) => setPageField('seo', { ...page.seo, canonical: v })}
+              />
+              <Field
+                def={{ name: 'jsonLd', label: 'Structured data (JSON-LD)', type: 'textarea', help: 'Raw JSON-LD, rendered as-is in a script tag. Validate at schema.org before saving.' }}
+                value={page.seo?.jsonLd}
+                onChange={(v) => setPageField('seo', { ...page.seo, jsonLd: v })}
+              />
 
               <SubHeading>Page defaults</SubHeading>
               <Muted className="mb-3">
@@ -308,7 +378,25 @@ export default function PagesEditor() {
             </>
           )}
 
-          {tab === 'content' && block && def && (
+          {tab === 'content' && block && block.type === 'shared' && (
+            <>
+              <Muted className="mb-3 block">
+                This section mirrors a shared component. Edit the component itself under
+                “Shared components” — changes there update every page using it, live pages
+                included.
+              </Muted>
+              <Field
+                def={{
+                  name: 'refId', label: 'Shared component', type: 'select',
+                  options: (doc.sharedBlocks ?? []).map((sb) => ({ label: sb.name, value: sb.id })),
+                }}
+                value={block.data.refId}
+                onChange={(v) => setBlockData('refId', v)}
+              />
+            </>
+          )}
+
+          {tab === 'content' && block && block.type !== 'shared' && def && (
             <>
               <Field
                 def={{ name: 'label', label: 'Section nickname (admin only)', type: 'text', placeholder: def.name }}

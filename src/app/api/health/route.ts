@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { requireEditor } from '@/lib/rbac';
+import { requireCapability } from '@/lib/rbac';
 import { dbPing } from '@/lib/db';
 import { whoAmI, dynamicsEnabled } from '@/lib/dynamics';
 import { mailWhoAmI, mailEnabled } from '@/lib/mail';
@@ -13,7 +13,7 @@ export const dynamic = 'force-dynamic';
    exactly the information you do not want on a public endpoint. */
 
 export async function GET(req: Request) {
-  const guard = await requireEditor();
+  const guard = await requireCapability('view');
   if (!guard.ok) return guard.response;
 
   const deep = new URL(req.url).searchParams.get('deep') === '1';

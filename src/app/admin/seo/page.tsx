@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useAdmin } from '@/components/admin/AdminProvider';
+import { useDialog } from '@/components/admin/Dialog';
 import {
   Button,
   Card,
@@ -33,6 +34,7 @@ const rid = () =>
   `rd_${Math.random().toString(36).slice(2, 9)}${Date.now().toString(36).slice(-4)}`;
 
 export default function SeoAdmin() {
+  const dialog = useDialog();
   const { doc, loading, update } = useAdmin();
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
@@ -44,7 +46,7 @@ export default function SeoAdmin() {
   const rules = doc.settings.redirects || [];
   const pages = doc.pages;
 
-  function add() {
+  async function add() {
     const problem = validateRule({ from, to }, rules);
     if (problem) {
       setError(problem);
@@ -55,10 +57,13 @@ export default function SeoAdmin() {
     const shadowed = pages.find((p) => '/' + p.slug === from.trim().replace(/\/+$/, ''));
     if (
       shadowed &&
-      !confirm(
-        `/${shadowed.slug} is a live page, so this redirect will not fire until that page is ` +
-          `deleted or unpublished. Add it anyway?`,
-      )
+      !(await dialog.confirm({
+        title: 'This redirect will not fire yet',
+        body:
+          `/${shadowed.slug} is a live page, so this redirect only takes effect once that ` +
+          `page is deleted or unpublished.`,
+        confirmLabel: 'Add it anyway',
+      }))
     ) {
       return;
     }

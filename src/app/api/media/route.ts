@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import path from 'path';
-import { readContent, writeContent, uid } from '@/lib/store';
-import { requireEditor } from '@/lib/rbac';
+import { readContent, writeContent, uid, VersionConflictError } from '@/lib/store';
+import { requireCapability } from '@/lib/rbac';
 import { putFile, deleteFile, mediaDriver } from '@/lib/storage';
 import { audit } from '@/lib/db';
 import { processImage, stem } from '@/lib/images';
@@ -20,7 +20,7 @@ const MIME: Record<string, string> = {
 };
 
 export async function POST(req: Request) {
-  const guard = await requireEditor();
+  const guard = await requireCapability('manageMedia');
   if (!guard.ok) return guard.response;
   const actor = guard.admin.actor;
 
@@ -84,15 +84,45 @@ export async function POST(req: Request) {
   return NextResponse.json({ ...item, version, optimised: processed.optimised, note: processed.note });
 }
 
+/** Where is this URL referenced? Same walk as /api/media/usage, kept here
+ *  so DELETE can refuse in one round-trip. */
+function usageOf(doc: Awaited<ReturnType<typeof readContent>>, url: string) {
+  const pages: { pageId: string; title: string; where: string }[] = [];
+  for (const p of doc.pages) {
+    const { lastPublished, ...working } = p as any;
+    const inDraft = JSON.stringify(working).includes(url);
+    const inLive = lastPublished ? JSON.stringify(lastPublished).includes(url) : false;
+    if (inDraft || inLive) {
+      pages.push({ pageId: p.id, title: p.title, where: inDraft && inLive ? 'both' : inDraft ? 'draft' : 'published' });
+    }
+  }
+  const inShared = JSON.stringify(doc.sharedBlocks ?? []).includes(url);
+  const inSettings = JSON.stringify(doc.settings).includes(url);
+  return { pages, inShared, inSettings, inUse: pages.length > 0 || inShared || inSettings };
+}
+
 export async function DELETE(req: Request) {
-  const guard = await requireEditor();
+  const guard = await requireCapability('manageMedia');
   if (!guard.ok) return guard.response;
   const actor = guard.admin.actor;
 
-  const { id } = await req.json();
+  const { id, force } = (await req.json().catch(() => ({}))) as { id?: string; force?: boolean };
+  if (!id) return NextResponse.json({ error: 'Missing id.' }, { status: 400 });
+
   const doc = await readContent();
   const item = doc.media.find((m) => m.id === id);
   if (!item) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+
+  /* Media usage tracking (requirement): refuse the delete when the file is
+     still referenced, and tell the client exactly where. The client shows
+     that list and can retry with force:true for a deliberate override. */
+  const usage = usageOf(doc, item.url);
+  if (usage.inUse && !force) {
+    return NextResponse.json(
+      { error: 'in-use', usage: { pages: usage.pages, inShared: usage.inShared, inSettings: usage.inSettings } },
+      { status: 409 },
+    );
+  }
 
   try {
     await deleteFile(item as any);
@@ -104,12 +134,24 @@ export async function DELETE(req: Request) {
       );
     }
   } catch (e) {
+    // A file already missing from disk/bucket must not block removing the
+    // record — that is exactly the state the record should leave.
     console.error('media delete failed (record removed anyway):', e);
   }
 
   doc.media = doc.media.filter((m) => m.id !== id);
-  const version = await writeContent(doc, actor);
-  audit('MEDIA_DELETE', actor, item.name);
-
-  return NextResponse.json({ ok: true, driver: mediaDriver(), version });
+  try {
+    const version = await writeContent(doc, actor);
+    audit('MEDIA_DELETE', actor, item.name + (force ? ' (forced while in use)' : ''));
+    return NextResponse.json({ ok: true, driver: mediaDriver(), version });
+  } catch (e) {
+    if (e instanceof VersionConflictError) {
+      return NextResponse.json(
+        { error: 'Someone saved content at the same moment. Try the delete again.' },
+        { status: 409 },
+      );
+    }
+    console.error('media delete save failed:', e);
+    return NextResponse.json({ error: 'Could not save the change. Check the server log.' }, { status: 500 });
+  }
 }

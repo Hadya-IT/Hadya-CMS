@@ -12,6 +12,7 @@ import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { readContent, publicPage } from '@/lib/store';
+import { expandShared } from '@/lib/shared';
 import { envelopeToCss } from '@/lib/style';
 import { matchRedirect } from '@/lib/redirects';
 import {
@@ -48,8 +49,9 @@ type Params = { slug?: string[] };
 async function mayPreview(requested: boolean): Promise<boolean> {
   if (!requested) return false;
   const session = await getServerSession(authOptions);
-  const role = session?.user?.role;
-  return role === 'ADMIN' || role === 'EDITOR';
+  // Any signed-in CMS user may preview drafts — Read Only included,
+  // which the requirements ask for. Anonymous visitors still cannot.
+  return !!session?.user?.role;
 }
 
 /** The slug this page answers to for anonymous visitors. A draft that was
@@ -109,9 +111,13 @@ export async function generateMetadata({
     openGraph: page.seo?.ogImage ? { images: [page.seo.ogImage] } : undefined,
     // Resolves the metadataBase warning and makes OG image paths absolute.
     metadataBase: base ? new URL(base) : undefined,
-    alternates: locales.length > 1
-      ? { canonical: localeHref(page.slug, locale, doc.settings), languages }
-      : undefined,
+    alternates: {
+      // A page-level override wins; otherwise the locale-aware self URL.
+      canonical:
+        page.seo?.canonical ||
+        (locales.length > 1 ? localeHref(page.slug, locale, doc.settings) : undefined),
+      ...(locales.length > 1 ? { languages } : {}),
+    },
   };
 }
 
@@ -145,7 +151,11 @@ export default async function DynamicPage({
     notFound();
   }
 
-  const page = translatePage(resolved, locale);
+  /* Reusable components: expand 'shared' references into their current
+     definitions before translation/render. Done here (not in snapshots),
+     so updating a shared block once updates every page immediately. */
+  const expanded = { ...resolved, blocks: expandShared(resolved.blocks, doc.sharedBlocks) };
+  const page = translatePage(expanded, locale);
   const settings = translateSettings(doc.settings, locale);
   const dir = dirFor(locale);
 
@@ -200,6 +210,12 @@ export default async function DynamicPage({
         allSettings={doc.settings}
       />
       <main className={overHero ? undefined : 'pt-[92px]'}>
+        {page.seo?.jsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: page.seo.jsonLd }}
+          />
+        )}
         {page.blocks.map((b) => (
           <BlockRenderer
             key={b.id}

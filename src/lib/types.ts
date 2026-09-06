@@ -157,6 +157,10 @@ export interface PageSeo {
   description?: string;
   ogImage?: string;
   noIndex?: boolean;
+  /** Overrides the self-referencing canonical when this page mirrors another URL. */
+  canonical?: string;
+  /** Raw JSON-LD for this page, rendered verbatim in a script tag. */
+  jsonLd?: string;
 }
 
 
@@ -174,6 +178,20 @@ export interface PublishedSnapshot {
   blocks: Block[];
   i18n?: Partial<Record<Locale, PageTranslation>>;
   publishedAt: string;
+}
+
+export type WorkflowState = 'draft' | 'in_review' | 'returned' | 'rejected' | 'approved';
+
+/** Approval workflow attached to a page. Written ONLY by /api/workflow —
+ *  the content PUT discards whatever the client sends here. */
+export interface PageWorkflow {
+  state: WorkflowState;
+  submittedBy?: string;
+  submittedAt?: string;
+  /** Latest reviewer comment, shown to the editor on return/reject. */
+  note?: string;
+  reviewedBy?: string;
+  reviewedAt?: string;
 }
 
 export interface Page {
@@ -194,6 +212,11 @@ export interface Page {
   i18n?: Partial<Record<Locale, PageTranslation>>;
   /** Last published state; survives the page being switched back to draft. */
   lastPublished?: PublishedSnapshot;
+  workflow?: PageWorkflow;
+  /** Approved content goes live automatically at this time. */
+  scheduledAt?: string;
+  /** Published content comes OFF the site automatically at this time. */
+  unpublishAt?: string;
 }
 
 export interface PageTranslation {
@@ -333,10 +356,24 @@ export interface SiteSettings {
   navExtra: NavLink[];          // links added by hand, on top of pages flagged showInNav
 }
 
+/** A named, reusable section. Pages reference it with a block of
+ *  type 'shared' whose data.refId points here; the reference is
+ *  expanded at render time, so editing the shared block once updates
+ *  every page that uses it — INCLUDING published ones. That is why
+ *  only publish-capable roles may change sharedBlocks (see
+ *  api/content). */
+export interface SharedBlock {
+  id: string;
+  name: string;
+  block: Block;
+}
+
 export interface ContentDoc {
   settings: SiteSettings;
   pages: Page[];
   media: MediaItem[];
+  /** Reusable components. Absent on older documents; normalised to []. */
+  sharedBlocks?: SharedBlock[];
   /** Editor-defined forms. Absent on documents saved before the form
    *  builder existed; readContent() normalises it to []. */
   forms?: FormDef[];

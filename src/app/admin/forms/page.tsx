@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useAdmin } from '@/components/admin/AdminProvider';
+import { useDialog } from '@/components/admin/Dialog';
 import {
   Button,
   Card,
@@ -62,6 +63,7 @@ const rid = (p: string) =>
   `${p}_${Math.random().toString(36).slice(2, 9)}${Date.now().toString(36).slice(-4)}`;
 
 export default function FormsAdmin() {
+  const dialog = useDialog();
   const { doc, loading, update } = useAdmin();
   const [selected, setSelected] = useState<string | null>(null);
   const [openField, setOpenField] = useState<string | null>(null);
@@ -185,8 +187,13 @@ export default function FormsAdmin() {
                 <Button
                   variant="danger"
                   size="sm"
-                  onClick={() => {
-                    if (!confirm(`Delete "${current.name}"? Existing submissions are kept.`)) return;
+                  onClick={async () => {
+                    if (!(await dialog.confirm({
+                      title: `Delete "${current.name}"?`,
+                      body: 'Existing submissions are kept.',
+                      confirmLabel: 'Delete form',
+                      danger: true,
+                    }))) return;
                     update((d) => {
                       d.forms = (d.forms || []).filter((f) => f.id !== current.id);
                     });

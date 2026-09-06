@@ -179,6 +179,7 @@ function normalise(doc: ContentDoc): ContentDoc {
     doc.settings.locales = { enabled: ['en'], showSwitch: false };
   }
   if (!Array.isArray(doc.settings.redirects)) doc.settings.redirects = [];
+  if (!Array.isArray(doc.sharedBlocks)) doc.sharedBlocks = [];
   if (!doc.settings.notifications) {
     doc.settings.notifications = { enabled: false, leadRecipients: [] };
   }
@@ -264,7 +265,19 @@ export function snapshotOf(p: Page, when = new Date().toISOString()): PublishedS
  *  published -> the page itself; draft with a snapshot -> the last
  *  published version; never-published draft -> null (a real 404). */
 export function publicPage(p: Page): Page | null {
+  const now = Date.now();
+
+  // Scheduled unpublish: past the time, the page is off the site.
+  if (p.unpublishAt && now >= Date.parse(p.unpublishAt)) return null;
+
   if (p.status === 'published') return p;
+
+  // Approved + scheduled: serve the working copy as live once due. The
+  // cron (scripts/apply-schedules.mjs) persists this; here it just works.
+  if (p.workflow?.state === 'approved' && p.scheduledAt && now >= Date.parse(p.scheduledAt)) {
+    return { ...p, status: 'published' };
+  }
+
   if (p.lastPublished) return { ...p, ...p.lastPublished, status: 'published' };
   return null;
 }

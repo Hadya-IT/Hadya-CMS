@@ -8,12 +8,15 @@ import { Button, Chip, cx } from './ui';
 
 const NAV = [
   { href: '/admin/pages', label: 'Pages' },
+  { href: '/admin/review', label: 'Review queue' },
   { href: '/admin/media', label: 'Media' },
+  { href: '/admin/shared', label: 'Shared components' },
   { href: '/admin/forms', label: 'Forms' },
   { href: '/admin/leads', label: 'Submissions' },
   { href: '/admin/translate', label: 'Translation' },
   { href: '/admin/analytics', label: 'Analytics' },
   { href: '/admin/seo', label: 'SEO & redirects' },
+  { href: '/admin/users', label: 'Users & roles', adminOnly: true },
   { href: '/admin/settings', label: 'Settings', adminOnly: true },
   { href: '/admin/status', label: 'System status' },
   { href: '/admin/guide', label: 'User guide' },
@@ -40,7 +43,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
         </div>
 
         <nav className="flex flex-col gap-0.5">
-          {NAV.filter((n) => !n.adminOnly || role === 'ADMIN').map((n) => {
+          {NAV.filter((n) => !n.adminOnly || role === 'MARKETING_ADMIN').map((n) => {
             const on = path.startsWith(n.href);
             return (
               <Link

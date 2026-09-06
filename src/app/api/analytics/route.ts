@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 import { getAnalytics, analyticsMode, gtmContainerId } from '@/lib/analytics';
-import { requireEditor } from '@/lib/rbac';
+import { requireCapability } from '@/lib/rbac';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: Request) {
-  const guard = await requireEditor();
+  const guard = await requireCapability('view');
   if (!guard.ok) return guard.response;
 
   const url = new URL(req.url);

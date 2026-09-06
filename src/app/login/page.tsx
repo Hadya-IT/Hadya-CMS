@@ -1,24 +1,29 @@
 'use client';
 
+/* ================================================================
+   /login — FULL REPLACEMENT (v2).
+
+   Both doors on one screen:
+     - "Sign in with Microsoft" when Entra SSO is configured
+     - email + password when local login is enabled (accounts live
+       in cms_local_user, created at /admin/users)
+   Which buttons render is decided by /api/auth/providers, so the
+   page never shows a door the server has not opened.
+   ================================================================ */
+
 import { Suspense, useEffect, useState } from 'react';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-/* ------------------------------------------------------------------
-   Split screen. The brand panel uses the site's navy and gold rather
-   than a stock indigo, so the portal reads as part of Hadya. The
-   Microsoft button follows their branding guidance: full-colour
-   four-square mark, "Sign in with Microsoft".
--------------------------------------------------------------------*/
-
 const ERRORS: Record<string, string> = {
   AccessDenied:
-    'This account does not have access to the CMS. Ask IT to assign you the Admin or Editor app role in Entra ID.',
+    'This account does not have access to the CMS. Ask a Marketing Admin to assign you a role.',
   Configuration:
     'Sign-in is misconfigured on the server. Check the AZURE_AD_* variables and NEXTAUTH_SECRET.',
   OAuthCallback:
     'Microsoft rejected the sign-in. The redirect URI registered in Entra ID may not match this address.',
   Verification: 'That sign-in link has expired. Start again.',
+  CredentialsSignin: 'Wrong email or password, or the account is disabled.',
 };
 
 function BrandPanel() {
@@ -44,8 +49,8 @@ function BrandPanel() {
           Content, in your hands
         </h1>
         <p className="text-[15px] leading-relaxed text-white/70">
-          Build and publish pages for the Hadya Group website. Sign in with your work account to
-          start editing.
+          Build and publish pages for the Hadya Group website. Sign in with your work account or the
+          login you were given.
         </p>
       </div>
 
@@ -64,55 +69,146 @@ function Panel({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Heading({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      <h2 className="text-[27px] font-bold tracking-tight text-ink">Sign in</h2>
-      <p className="mt-2.5 text-[13px] leading-relaxed text-dim">{children}</p>
-    </>
-  );
-}
+const FIELD =
+  'mt-1.5 w-full rounded-[10px] border border-[#d7dae2] px-3.5 py-3 text-sm text-ink ' +
+  'outline-none transition focus:border-gold focus:shadow-[0_0_0_3px_rgb(193_160_106/0.18)]';
 
 function SignInPanel() {
   const router = useRouter();
   const sp = useSearchParams();
   const { status } = useSession();
   const next = sp.get('callbackUrl') || sp.get('next') || '/admin/pages';
+
+  const [providers, setProviders] = useState<Record<string, unknown> | null>(null);
   const [busy, setBusy] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [localErr, setLocalErr] = useState('');
 
   const errParam = sp.get('error');
-  const err = errParam ? ERRORS[errParam] || 'Sign-in failed. Try again.' : '';
+  const urlErr = errParam ? ERRORS[errParam] || 'Sign-in failed. Try again.' : '';
+  const err = localErr || urlErr;
 
   useEffect(() => {
     if (status === 'authenticated') router.replace(next);
   }, [status, next, router]);
 
+  useEffect(() => {
+    fetch('/api/auth/providers')
+      .then((r) => r.json())
+      .then(setProviders)
+      .catch(() => setProviders({}));
+  }, []);
+
+  const hasSso = !!providers?.['azure-ad'];
+  const hasLocal = !!providers?.local;
+
+  async function submitLocal(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    setLocalErr('');
+    const res = await signIn('local', {
+      username: email.trim(),
+      password,
+      redirect: false,
+    });
+    setBusy(false);
+    if (res?.error) {
+      setLocalErr(ERRORS.CredentialsSignin);
+      return;
+    }
+    router.replace(next);
+  }
+
   return (
     <Panel>
-      <Heading>Use your Hadya Group work account.</Heading>
+      <h2 className="text-[27px] font-bold tracking-tight text-ink">Sign in</h2>
+      <p className="mt-2.5 text-[13px] leading-relaxed text-dim">
+        {providers === null
+          ? 'Loading sign-in options…'
+          : hasSso && hasLocal
+            ? 'Use your Hadya Group work account, or the email and password you were given.'
+            : hasSso
+              ? 'Use your Hadya Group work account.'
+              : 'Use the email and password you were given.'}
+      </p>
 
-      <button
-        type="button"
-        onClick={() => {
-          setBusy(true);
-          signIn('azure-ad', { callbackUrl: next });
-        }}
-        disabled={busy || status === 'loading'}
-        className="mt-7 flex w-full cursor-pointer items-center justify-center gap-3 rounded-[10px]
-          border border-ink bg-ink px-4 py-3.5 text-sm font-semibold text-white
-          shadow-[0_2px_6px_rgb(16_24_40/0.12)] transition
-          hover:bg-ink-lift hover:shadow-[0_4px_12px_rgb(16_24_40/0.18)]
-          focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold
-          active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-55"
-      >
-        <svg className="size-[19px] flex-none" viewBox="0 0 23 23" aria-hidden="true">
-          <path d="M0 0h11v11H0z" fill="#F25022" />
-          <path d="M12 0h11v11H12z" fill="#7FBA00" />
-          <path d="M0 12h11v11H0z" fill="#00A4EF" />
-          <path d="M12 12h11v11H12z" fill="#FFB900" />
-        </svg>
-        {busy ? 'Redirecting to Microsoft…' : 'Sign in with Microsoft'}
-      </button>
+      {hasSso && (
+        <button
+          type="button"
+          onClick={() => {
+            setBusy(true);
+            signIn('azure-ad', { callbackUrl: next });
+          }}
+          disabled={busy || status === 'loading'}
+          className="mt-7 flex w-full cursor-pointer items-center justify-center gap-3 rounded-[10px]
+            border border-ink bg-ink px-4 py-3.5 text-sm font-semibold text-white
+            shadow-[0_2px_6px_rgb(16_24_40/0.12)] transition
+            hover:bg-ink-lift hover:shadow-[0_4px_12px_rgb(16_24_40/0.18)]
+            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold
+            active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-55"
+        >
+          <svg className="size-[19px] flex-none" viewBox="0 0 23 23" aria-hidden="true">
+            <path d="M0 0h11v11H0z" fill="#F25022" />
+            <path d="M12 0h11v11H12z" fill="#7FBA00" />
+            <path d="M0 12h11v11H0z" fill="#00A4EF" />
+            <path d="M12 12h11v11H12z" fill="#FFB900" />
+          </svg>
+          {busy ? 'Redirecting to Microsoft…' : 'Sign in with Microsoft'}
+        </button>
+      )}
+
+      {hasSso && hasLocal && (
+        <div className="my-6 flex items-center gap-3 text-[11px] uppercase tracking-[0.14em] text-dim">
+          <span className="h-px flex-1 bg-[#e3e6ec]" />
+          or with email
+          <span className="h-px flex-1 bg-[#e3e6ec]" />
+        </div>
+      )}
+
+      {hasLocal && (
+        <form onSubmit={submitLocal} className={hasSso ? '' : 'mt-7'}>
+          <label className="block text-[12.5px] font-medium text-ink">
+            Email
+            <input
+              type="text"
+              autoComplete="username"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={FIELD}
+              required
+            />
+          </label>
+          <label className="mt-4 block text-[12.5px] font-medium text-ink">
+            Password
+            <input
+              type="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={FIELD}
+              required
+            />
+          </label>
+          <button
+            type="submit"
+            disabled={busy || status === 'loading'}
+            className="mt-5 w-full cursor-pointer rounded-[10px] border border-[#c1a06a]
+              bg-[#c1a06a] px-4 py-3.5 text-sm font-semibold text-white transition
+              hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-2
+              focus-visible:outline-gold active:scale-[0.99]
+              disabled:cursor-not-allowed disabled:opacity-55"
+          >
+            {busy ? 'Signing in…' : 'Sign in'}
+          </button>
+        </form>
+      )}
+
+      {providers !== null && !hasSso && !hasLocal && (
+        <p className="mt-6 text-[13px] text-dim">
+          No sign-in method is configured on the server.
+        </p>
+      )}
 
       {err && (
         <p
@@ -142,7 +238,8 @@ export default function LoginPage() {
       <Suspense
         fallback={
           <Panel>
-            <Heading>Loading sign-in options…</Heading>
+            <h2 className="text-[27px] font-bold tracking-tight text-ink">Sign in</h2>
+            <p className="mt-2.5 text-[13px] text-dim">Loading sign-in options…</p>
           </Panel>
         }
       >
