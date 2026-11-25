@@ -117,9 +117,15 @@ export function translatePage(page: Page, locale: Locale): Page {
     blocks: page.blocks.map((b) => {
       const fields = tr.blocks?.[b.id];
       if (!fields) return b;
-      const data = { ...b.data };
+      // Deep copy so list items can be overridden without touching English.
+      const data = JSON.parse(JSON.stringify(b.data));
       for (const [key, value] of Object.entries(fields)) {
-        if (typeof value === 'string' && value.trim()) data[key] = value;
+        if (typeof value !== 'string' || !value.trim()) continue;
+        // 'items.0.title' addresses a field inside a list item.
+        const path = key.split('.');
+        let node: any = data;
+        for (let i = 0; i < path.length - 1 && node != null; i++) node = node[path[i]];
+        if (node != null && typeof node === 'object') node[path[path.length - 1]] = value;
       }
       return { ...b, data };
     }),
@@ -132,6 +138,7 @@ export function translateSettings(settings: SiteSettings, locale: Locale): SiteS
   if (!tr) return settings;
   return {
     ...settings,
+    brandName: tr.brandName?.trim() || settings.brandName,
     brandTagline: tr.brandTagline?.trim() || settings.brandTagline,
     header: {
       ...settings.header,
@@ -140,6 +147,10 @@ export function translateSettings(settings: SiteSettings, locale: Locale): SiteS
     footer: {
       ...settings.footer,
       copy: tr.footerCopy?.trim() || settings.footer.copy,
+      links: (settings.footer.links || []).map((l) => ({
+        ...l,
+        label: tr.navLabels?.[l.id]?.trim() || l.label,
+      })),
     },
   };
 }

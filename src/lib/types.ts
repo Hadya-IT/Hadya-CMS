@@ -314,6 +314,7 @@ export interface SiteSettings {
     Record<
       Locale,
       {
+        brandName?: string;
         brandTagline?: string;
         headerCtaLabel?: string;
         footerCopy?: string;
@@ -350,6 +351,9 @@ export interface SiteSettings {
     enabled: boolean;
     word: string;
     sub: string;
+    /** Arabic splash text, used when the visitor is on the Arabic site. */
+    wordAr?: string;
+    subAr?: string;
     durationMs: number;
   };
 

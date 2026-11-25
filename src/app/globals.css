@@ -36,6 +36,36 @@
 
   --radius-panel: 7px;
 
+  /* ---------------- public site: keyframes ----------------
+     Only for motion that genuinely needs keyframes. Everything that is a
+     simple state transition is a utility on the element instead. */
+  --animate-kenburns: kenburns 26s ease-in-out infinite alternate;
+  --animate-flow: flow 3.4s ease-in-out infinite;
+  --animate-scroll-hint: scroll-hint 2.2s ease-in-out infinite;
+
+  @keyframes kenburns {
+    from { transform: scale(1.04); }
+    to   { transform: scale(1.14); }
+  }
+  @keyframes flow {
+    0%   { stroke-dashoffset: 1000; opacity: 0; }
+    12%  { opacity: 1; }
+    88%  { opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+  @keyframes scroll-hint {
+    0%, 100% { transform: translateY(0); opacity: .55; }
+    50%      { transform: translateY(6px); opacity: 1; }
+  }
+}
+
+/* Public-site tokens point at custom properties that are only set at
+   runtime, on the layout wrapper and on each <section>. `inline` makes
+   Tailwind put the var() reference into the utility itself so it resolves
+   on the element; without it the reference resolves once on :root, where
+   none of these are set, and every brand colour and heading font was
+   silently falling back. */
+@theme inline {
   /* ---------------- public site: site scope ----------------
      Set inline by tokensToCss() on the layout wrapper. Used by the header,
      footer and splash, which sit outside any section and so have no
@@ -79,28 +109,8 @@
   --text-h3: calc(clamp(1.05rem, 1.3vw, 1.3rem) * var(--sec-heading-scale, 1));
   --text-stat: calc(clamp(2.2rem, 3.6vw, 3.2rem) * var(--sec-heading-scale, 1));
 
-  /* ---------------- public site: keyframes ----------------
-     Only for motion that genuinely needs keyframes. Everything that is a
-     simple state transition is a utility on the element instead. */
-  --animate-kenburns: kenburns 22s ease-out forwards;
-  --animate-flow: flow 3.4s ease-in-out infinite;
-  --animate-scroll-hint: scroll-hint 2.2s ease-in-out infinite;
-
-  @keyframes kenburns {
-    from { transform: scale(1); }
-    to   { transform: scale(1.12); }
-  }
-  @keyframes flow {
-    0%   { stroke-dashoffset: 1000; opacity: 0; }
-    12%  { opacity: 1; }
-    88%  { opacity: 1; }
-    100% { stroke-dashoffset: 0; opacity: 0; }
-  }
-  @keyframes scroll-hint {
-    0%, 100% { transform: translateY(0); opacity: .55; }
-    50%      { transform: translateY(6px); opacity: 1; }
-  }
 }
+
 
 /* Editor-authored HTML arrives as a trusted string from the CMS, so it has
    no classes to hook. These are the only element selectors in the project,
@@ -130,3 +140,30 @@
     color: var(--sec-accent);
   }
 }
+
+/* ------------------------------------------------------------------
+   Splash — matches the reference site: cream ground, emblem, word, a gold
+   rule that draws out, then the sub line. Staged with keyframes because it
+   is a one-off sequence, not a state transition.
+------------------------------------------------------------------- */
+@keyframes splash-in { to { opacity: 1; transform: none; } }
+@keyframes splash-line { to { width: 150px; } }
+.splash-emb  { opacity: 0; transform: scale(.8);       animation: splash-in 1.3s cubic-bezier(.16,.84,.44,1) .2s forwards; }
+.splash-word { opacity: 0; transform: translateY(10px); animation: splash-in 1.1s cubic-bezier(.16,.84,.44,1) .7s forwards; }
+.splash-line { width: 0;                                animation: splash-line 1.1s cubic-bezier(.16,.84,.44,1) 1s forwards; }
+.splash-sub  { opacity: 0;                              animation: splash-in 1s ease 1.3s forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .splash-emb, .splash-word, .splash-line, .splash-sub { animation-duration: .4s; animation-delay: 0s; }
+}
+
+/* ------------------------------------------------------------------
+   Arabic. Swap the font families for everything under a RTL wrapper, and
+   drop the wide letter-spacing that Latin caps need but Arabic script
+   breaks under (it disconnects the letters).
+------------------------------------------------------------------- */
+[dir="rtl"] {
+  --font-serif: var(--font-ar-serif);
+  --font-sans: var(--font-ar-sans);
+  line-height: 1.7;
+}
+[dir="rtl"] [class*="tracking-"] { letter-spacing: 0 !important; }

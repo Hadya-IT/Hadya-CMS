@@ -65,32 +65,57 @@ function Hero({ block, media }: BlockProps) {
   const bg = (src?: string) => bgFor(src, media);
   const d = block.data;
   const a = anim(block);
+  /* Matches the reference landing: centred headline over a slow Ken Burns
+     image, caption bottom-start and scroll cue bottom-end. Set the section
+     alignment to Left in the style panel to get the old left-hand layout. */
+  const left = block.style?.align === 'left';
   return (
     <div
-      className="relative flex flex-col justify-center overflow-hidden"
+      className={cx(
+        'relative flex flex-col justify-center overflow-hidden',
+        left ? 'items-start text-start' : 'items-center text-center',
+      )}
       style={{ minHeight: `${d.height || 100}vh` }}
     >
       {d.image && (
         <div
-          className={cx(MEDIA_LAYER, d.kenBurns && 'animate-kenburns motion-reduce:animate-none')}
+          className={cx(
+            MEDIA_LAYER,
+            'scale-[1.04]',
+            d.kenBurns && 'animate-kenburns motion-reduce:animate-none',
+          )}
           style={{ backgroundImage: bg(d.image) }}
         />
       )}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(8_10_18/0.42)_0%,rgb(8_10_18/0.18)_42%,rgb(8_10_18/0.78)_100%)]"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(15_12_20/0.55)_0%,rgb(15_12_22/0.28)_32%,rgb(15_12_22/0.42)_70%,rgb(15_12_18/0.72)_100%)]"
       />
 
-      <Wrap className="relative pt-[92px]">
-        <Reveal {...a} className="max-w-[24ch]">
-          {d.eyebrow && <Eyebrow tone="light">{d.eyebrow}</Eyebrow>}
+      <Wrap className={cx('relative', left ? '' : 'flex justify-center')}>
+        <Reveal {...a} className={cx('max-w-[1000px]', left ? '' : 'mx-auto')}>
+          {d.eyebrow && (
+            <Eyebrow tone="light" className="!mb-[30px] block">
+              {d.eyebrow}
+            </Eyebrow>
+          )}
           <h1
             data-display
-            className={cx(HEADING, 'text-display leading-[1.04] [text-wrap:balance]')}
+            className={cx(
+              HEADING,
+              'text-[calc(clamp(42px,7vw,96px)*var(--sec-heading-scale,1))] font-medium leading-[1.02] [text-wrap:balance]',
+            )}
             dangerouslySetInnerHTML={html(d.title)}
           />
           {d.subtitle && (
-            <p className="mt-6 max-w-[46ch] text-lede leading-sec text-sec-text">{d.subtitle}</p>
+            <p
+              className={cx(
+                'mt-8 max-w-[52ch] text-[clamp(14px,1.4vw,16px)] font-light leading-[1.7] text-white/80',
+                left ? '' : 'mx-auto',
+              )}
+            >
+              {d.subtitle}
+            </p>
           )}
           {d.ctaLabel && (
             <GhostLink href={d.ctaHref || '#'} className="mt-9">
@@ -101,25 +126,23 @@ function Hero({ block, media }: BlockProps) {
       </Wrap>
 
       {(d.captionTitle || d.scrollLabel) && (
-        <Wrap className="relative mt-auto pb-10 pt-16">
-          <div className="flex flex-wrap items-end justify-between gap-6 border-t border-sec-line pt-6">
-            <div>
-              {d.captionTitle && (
-                <span className="block text-eyebrow uppercase tracking-[0.2em] text-sec-heading">
-                  {d.captionTitle}
-                </span>
-              )}
-              {d.captionSub && (
-                <small className="mt-1.5 block text-eyebrow text-sec-text">{d.captionSub}</small>
-              )}
-            </div>
-            {d.scrollLabel && (
-              <div className="animate-scroll-hint text-eyebrow uppercase tracking-[0.2em] text-sec-text motion-reduce:animate-none">
-                {d.scrollLabel}
-              </div>
+        <div className="absolute inset-x-0 bottom-0 z-[3] mx-auto flex max-w-[1280px] items-end justify-between px-[clamp(24px,5vw,56px)] pb-[38px] text-start">
+          <div>
+            {d.captionTitle && (
+              <span className="block font-heading text-[19px] text-white">{d.captionTitle}</span>
+            )}
+            {d.captionSub && (
+              <small className="mt-1.5 block font-sans text-[10.5px] uppercase tracking-[.22em] text-white/55">
+                {d.captionSub}
+              </small>
             )}
           </div>
-        </Wrap>
+          {d.scrollLabel && (
+            <div className="flex items-center gap-3 font-sans text-[10.5px] uppercase tracking-[.24em] text-white/60 after:h-px after:w-[46px] after:bg-white/50 after:content-['']">
+              {d.scrollLabel}
+            </div>
+          )}
+        </div>
       )}
     </div>
   );
